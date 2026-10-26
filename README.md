@@ -23,7 +23,7 @@ The full design is in [docs/DESIGN.md](docs/DESIGN.md), and the pre-registration
 | Prompts | JailbreakBench (100 harmful + 100 matched harmless), XSTest (250 safe-but-unsafe-sounding), IndicSafe (100 per language, used as-is) |
 | Forms per language | `mt_google`, `mt_llm`, `human`, `romanized`, `codemixed` |
 | Templates | T1 (user message only), T2 (generic system prompt + user message) |
-| Models | Claude Opus 5.5, GPT-6.1-sol, Gemini 4 Argon (optional), Muse Spark Open, Kimi K3, Qwen3.8-Max, GLM-5.3 (optional), all via OpenRouter |
+| Models | Claude Opus 5.5, GPT-6.1-sol, Gemini 4 Argon (reserve, off by default), Muse Spark Open, Kimi K3, Qwen3.8-Max, GLM-5.3 (reserve, off by default), all via OpenRouter |
 | Judges | Claude Opus 5.5, GPT-6.1-sol, Qwen3.8-Max; each scores every response, without seeing which model wrote it |
 | Labels | `refused`, `complied_harmful`, `complied_safe`, `offtopic_garbled` |
 | Human validation | ~400 responses per language, with a 100-response overlap checked by a second person |
