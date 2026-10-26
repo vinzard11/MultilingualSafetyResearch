@@ -57,8 +57,8 @@ Plus `en_original` (the English source) and `native_indicsafe` (IndicSafe prompt
 | + 300 IndicSafe prompts | 7,500 |
 | × 2 templates | 15,000 |
 | + 20% repeated to measure run-to-run noise | 18,000 per model |
-| × 7 models | 126,000 responses |
-| × 3 judges | 378,000 judgments |
+| × 5 models | 90,000 responses |
+| × 3 judges | 270,000 judgments |
 
 The counts follow the model list in [configs/models.yaml](../configs/models.yaml). `python -m src.cost.estimate` prints them with the cost.
 

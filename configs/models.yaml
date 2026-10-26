@@ -108,7 +108,7 @@ models:
     origin: CN
     openrouter_id: null        # TO CONFIRM
     provider: null             # TO CONFIRM
-    enabled: true
+    enabled: false
     batch_available: false     # current assumption, TO CONFIRM
     reasoning: null            # TO CONFIRM
     price_input_per_m: 0.07      # as of Oct 2026: read directly off OpenRouter

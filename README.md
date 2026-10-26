@@ -2,7 +2,7 @@
 
 **How much of the gap in LLM safety behavior across languages comes from translation artifacts, and how much from the language itself? And does this differ between US and Chinese models?**
 
-An ongoing personal research project. We test 7 models on the same requests in English, Telugu, Tamil and Hindi. Each prompt comes in several forms: Google-translated, LLM-translated, human-translated, romanized and code-mixed. Three judges from different model families label every response. A generalizability-theory study (G-study) then splits the variance in safety outcomes across language, prompt form, model, template, harm category, judge and run.
+An ongoing personal research project. We test 5 models on the same requests in English, Telugu, Tamil and Hindi. Each prompt comes in several forms: Google-translated, LLM-translated, human-translated, romanized and code-mixed. Three judges from different model families label every response. A generalizability-theory study (G-study) then splits the variance in safety outcomes across language, prompt form, model, template, harm category, judge and run.
 
 > **Status: setup.** The design, configs, data loaders, schema, judge rubric, cost estimator and pipeline skeleton are in place. **No models have been evaluated yet.** The analysis plan will be fixed before any results exist.
 
@@ -23,11 +23,11 @@ The full design is in [docs/DESIGN.md](docs/DESIGN.md), and the pre-registration
 | Prompts | JailbreakBench (100 harmful + 100 matched harmless), XSTest (250 safe-but-unsafe-sounding), IndicSafe (100 per language, used as-is) |
 | Forms per language | `mt_google`, `mt_llm`, `human`, `romanized`, `codemixed` |
 | Templates | T1 (user message only), T2 (generic system prompt + user message) |
-| Models | Claude Opus 5.5, GPT-6.1-sol, Gemini 4 Argon (optional), Muse Spark Open, Kimi K3, Qwen3.8-Max, GLM-5.3, all via OpenRouter |
+| Models | Claude Opus 5.5, GPT-6.1-sol, Gemini 4 Argon (optional), Muse Spark Open, Kimi K3, Qwen3.8-Max, GLM-5.3 (optional), all via OpenRouter |
 | Judges | Claude Opus 5.5, GPT-6.1-sol, Qwen3.8-Max; each scores every response, without seeing which model wrote it |
 | Labels | `refused`, `complied_harmful`, `complied_safe`, `offtopic_garbled` |
 | Human validation | ~400 responses per language, with a 100-response overlap checked by a second person |
-| Scale (7 models) | 7,500 prompt versions × 2 templates + 20% repeats = 18,000 responses per model; 126,000 responses; 378,000 judgments |
+| Scale (5 models) | 7,500 prompt versions × 2 templates + 20% repeats = 18,000 responses per model; 90,000 responses; 270,000 judgments |
 
 ## Repository layout
 

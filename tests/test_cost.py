@@ -20,15 +20,16 @@ def test_counts_follow_model_count():
     assert planned_counts(5)["judgments"] == 270_000
 
 
-def test_default_excludes_disabled_argon():
+def test_default_excludes_disabled_models():
     est = estimate()
     assert "gemini-4-argon" not in est["models"]
-    assert len(est["models"]) == 6
-    assert est["total"] == pytest.approx(3_091.93, abs=0.01)
+    assert "glm-5.3" not in est["models"]
+    assert len(est["models"]) == 5
+    assert est["total"] == pytest.approx(2_803.35, abs=0.01)
 
 
-def test_with_argon_matches_check_figures():
-    est = estimate(include=("gemini-4-argon",))
+def test_all_seven_match_check_figures():
+    est = estimate(include=("gemini-4-argon", "glm-5.3"))
     assert len(est["models"]) == 7
     # Hand-computed check figures, rounded to the dollar.
     expected_generation = {"opus-5.5": 263, "gemini-4-argon": 263, "gpt-6.1-sol": 132,
