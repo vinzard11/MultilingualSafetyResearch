@@ -3,6 +3,8 @@ name = "cross-lingual-safety-gaps"
 version = "0.1.0"
 description = "Pilot: how much of the cross-lingual LLM safety gap is translation artifact vs. language itself"
 requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
     "pyyaml>=6.0",
     "pandas>=2.0",
@@ -15,7 +17,7 @@ dependencies = [
 dev = ["pytest>=8.0"]
 
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]

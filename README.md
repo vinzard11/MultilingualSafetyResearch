@@ -82,7 +82,7 @@ Submitting batches refuses to run while any setting in the configs is still a pl
 
 ## Data and licenses
 
-Source datasets are downloaded at runtime from pinned revisions and are not committed. **IndicSafe data is CC BY-NC 4.0, and anything derived from it keeps that license with attribution.** Details and citations are in [DATA_LICENSES.md](DATA_LICENSES.md).
+Source datasets are downloaded at runtime from pinned revisions and are not committed. **IndicSafe data is CC BY-NC 4.0, and anything derived from it keeps that license with attribution.** Details and citations are in [DATA_LICENSES.md](DATA_LICENSES.md). The code is MIT-licensed; see [LICENSE](LICENSE).
 
 Raw model responses and judge outputs stay private. Only aggregates and safe examples will be published. See [docs/RESEARCH_CONDUCT.md](docs/RESEARCH_CONDUCT.md).
 

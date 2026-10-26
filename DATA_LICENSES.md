@@ -24,4 +24,4 @@ Our translations of JailbreakBench and XSTest prompts (machine, human, romanized
 
 ## Code
 
-The code license for this repository will be added before it goes public.
+The code in this repository is licensed under the [MIT License](LICENSE). That license covers the code only. Data derived from the source datasets keeps the licenses above, so anything derived from IndicSafe stays CC BY-NC 4.0 whatever the code license.
