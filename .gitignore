@@ -1,0 +1,25 @@
+# Internal planning notes (kept locally, never committed)
+REPO_SPEC.md
+
+# Secrets
+.env
+
+# Raw model responses and judge outputs stay private
+outputs/*
+!outputs/.gitkeep
+
+# Downloaded datasets (fetched at runtime, never committed)
+data_cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

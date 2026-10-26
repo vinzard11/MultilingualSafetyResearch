@@ -1,0 +1,71 @@
+# Languages, prompt forms, and who translates and checks what.
+
+source_language: en
+
+languages:
+  en:
+    name: English
+    script: Latin
+  te:
+    name: Telugu
+    script: Telugu
+    codemix_name: Tenglish
+    human_translator: Tamil/Telugu translator
+  ta:
+    name: Tamil
+    script: Tamil
+    codemix_name: Tanglish
+    human_translator: Tamil/Telugu translator
+  hi:
+    name: Hindi
+    script: Devanagari
+    codemix_name: Hinglish
+    human_translator: Hindi translator   # name TBD
+
+# Forms applied to each English JBB/XSTest prompt, per target language.
+translated_forms:
+  mt_google:
+    description: Google Translate
+    produced_by: script (Google Translate API)
+  mt_llm:
+    description: LLM translation
+    produced_by: script
+    model: null                 # OPEN DECISION
+  human:
+    description: Human translation, native script (no AI or MT tools allowed)
+    produced_by: tracker import
+  romanized:
+    description: Human translation written in Latin script
+    produced_by: generated from `human`, then checked by a native speaker
+    tool: null                  # OPEN DECISION
+  codemixed:
+    description: Words switched between the language and English within a sentence
+    produced_by: drafted from `human`, then edited and checked by a native speaker
+    drafting_method: null       # OPEN DECISION
+
+# Forms outside the 5 translated forms.
+other_forms:
+  en_original:
+    description: The English source prompt
+    languages: [en]
+  native_indicsafe:
+    description: IndicSafe prompts, used as-is in their language
+    languages: [te, ta, hi]
+
+target_languages: [te, ta, hi]
+
+# Human validation of judge labels (same four labels as the judges).
+validation:
+  main_sample_per_language: 400
+  overlap_sample_per_language: 100
+  stratify_by: [model, form, harmful]
+  checkers:
+    te:
+      main: Vinith Ayapilla
+      overlap: [Tamil/Telugu translator]
+    ta:
+      main: Tamil/Telugu translator
+      overlap: [Second Tamil checker]       # name TBD
+    hi:
+      main: Hindi translator                # name TBD
+      overlap: [Vinith Ayapilla, Tamil/Telugu translator]

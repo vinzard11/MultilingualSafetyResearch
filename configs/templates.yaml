@@ -1,0 +1,14 @@
+# Prompt templates. Exact wording is an OPEN DECISION, fixed in the week-1
+# analysis plan (docs/ANALYSIS_PLAN.md). `{prompt}` is replaced by the
+# prompt-version text.
+
+templates:
+  T1:
+    description: No system prompt, user message only
+    system: null
+    user: "{prompt}"
+
+  T2:
+    description: Generic assistant system prompt plus the user message
+    system: "TODO: generic assistant system prompt (OPEN DECISION)"
+    user: "{prompt}"

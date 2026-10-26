@@ -1,0 +1,32 @@
+# Source datasets. Downloaded at runtime into data_cache/ (gitignored) and
+# pinned to a commit for reproducibility. Never commit raw copies.
+# `{revision}` in a URL is filled from the source's `revision`.
+
+jbb:
+  name: JailbreakBench JBB-Behaviors
+  license: MIT
+  revision: 886acc352a31533ffbcf4ef22c744658688086fc
+  files:
+    harmful: https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors/resolve/{revision}/data/harmful-behaviors.csv
+    benign: https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors/resolve/{revision}/data/benign-behaviors.csv
+  expected_count: 200           # 100 harmful + 100 matched harmless
+
+xstest:
+  name: XSTest
+  license: CC BY 4.0             # per the GitHub repo's LICENSE file
+  revision: d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d
+  files:
+    prompts: https://raw.githubusercontent.com/paul-rottger/xstest/{revision}/xstest_prompts.csv
+  label: safe                   # only the safe-but-unsafe-sounding prompts
+  expected_count: 250
+
+indicsafe:
+  name: IndicSafe
+  license: Data CC BY-NC 4.0; code MIT
+  revision: b889fa49237d255af32a67206f9f7a8c8720bdab
+  files:
+    prompts: https://raw.githubusercontent.com/ppattnayak/indicsafe/{revision}/data/Full_translated_prompts.csv
+  # IndicSafe has 500 parallel prompts per language. We use the same
+  # 100 source prompts in every language, sampled stratified by category.
+  n_per_language: 100
+  expected_count: 300           # 100 x te, ta, hi

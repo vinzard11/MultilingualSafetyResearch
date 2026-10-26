@@ -1,0 +1,115 @@
+# Models under test. All are called through OpenRouter, using its Batch API
+# where a model has a batch variant.
+#
+# Run counts and the cost estimate are derived from the *enabled* models here,
+# so enabling/disabling a model updates everything downstream.
+#
+# Fields:
+#   name                display name
+#   lab                 developer (used to measure judge self-preference)
+#   group               us_closed_frontier | us_open_weight | cn_open_weight | cn
+#   origin              US | CN (the "model origin" factor in the G-study)
+#   openrouter_id       OpenRouter model ID                     (TO CONFIRM)
+#   provider            pinned OpenRouter provider               (TO CONFIRM)
+#   enabled             include in runs and cost estimate
+#   batch_available     has a batch variant on OpenRouter        (TO CONFIRM)
+#   reasoning           OpenRouter `reasoning` setting for the lowest level (TO CONFIRM)
+#   price_input_per_m   USD per 1M input tokens
+#   price_output_per_m  USD per 1M output tokens (reasoning tokens are billed as output)
+#
+# The batch flags are planning assumptions (50% off on the US frontier models
+# only), not confirmed availability. Judges use these same prices and flags.
+
+batch_discount: 0.5   # fraction off list price for batch requests
+
+models:
+  opus-5.5:
+    name: Claude Opus 5.5
+    lab: Anthropic
+    group: us_closed_frontier
+    origin: US
+    openrouter_id: null        # TO CONFIRM
+    provider: null             # TO CONFIRM
+    enabled: true
+    batch_available: true      # current assumption, TO CONFIRM
+    reasoning: null            # TO CONFIRM
+    price_input_per_m: 4.00      # as of Oct 2026: Anthropic API pricing page; recheck on OpenRouter
+    price_output_per_m: 20.00
+
+  gpt-6.1-sol:
+    name: GPT-6.1-sol
+    lab: OpenAI
+    group: us_closed_frontier
+    origin: US
+    openrouter_id: null        # TO CONFIRM
+    provider: null             # TO CONFIRM
+    enabled: true
+    batch_available: true      # current assumption, TO CONFIRM
+    reasoning: null            # TO CONFIRM
+    price_input_per_m: 2.00      # as of Oct 2026: OpenAI API pricing page; recheck on OpenRouter
+    price_output_per_m: 10.00
+
+  gemini-4-argon:
+    name: Gemini 4 Argon
+    lab: Google
+    group: us_closed_frontier
+    origin: US
+    openrouter_id: null        # TO CONFIRM
+    provider: null             # TO CONFIRM
+    enabled: false             # OPTIONAL: not on sale as of 1 Oct 2026. OPEN DECISION
+    batch_available: true      # current assumption, TO CONFIRM
+    reasoning: null            # TO CONFIRM
+    price_input_per_m: 4.00      # as of Oct 2026: Google API pricing page, regular price ($2/$10 intro promo); recheck on OpenRouter
+    price_output_per_m: 20.00
+
+  muse-spark-open:
+    name: Muse Spark Open
+    lab: Meta
+    group: us_open_weight
+    origin: US
+    openrouter_id: null        # TO CONFIRM
+    provider: null             # TO CONFIRM
+    enabled: true
+    batch_available: false     # current assumption, TO CONFIRM
+    reasoning: null            # TO CONFIRM
+    price_input_per_m: 1.25      # as of Oct 2026: third-party page quoting OpenRouter; recheck
+    price_output_per_m: 4.25
+
+  kimi-k3:
+    name: Kimi K3              # swap to K3.1 Pro only if confirmed to exist
+    lab: Moonshot
+    group: cn_open_weight
+    origin: CN
+    openrouter_id: null        # TO CONFIRM
+    provider: null             # TO CONFIRM
+    enabled: true
+    batch_available: false     # current assumption, TO CONFIRM
+    reasoning: null            # TO CONFIRM
+    price_input_per_m: 2.80      # as of Oct 2026: third-party page quoting OpenRouter; recheck
+    price_output_per_m: 14.00
+
+  qwen3.8-max:
+    name: Qwen3.8-Max
+    lab: Alibaba
+    group: cn
+    origin: CN
+    openrouter_id: null        # TO CONFIRM
+    provider: null             # TO CONFIRM
+    enabled: true
+    batch_available: false     # current assumption, TO CONFIRM
+    reasoning: null            # TO CONFIRM
+    price_input_per_m: 2.00      # as of Oct 2026: price aggregator listing Alibaba's rate; recheck
+    price_output_per_m: 6.00
+
+  glm-5.3:
+    name: GLM-5.3
+    lab: Z.ai
+    group: cn
+    origin: CN
+    openrouter_id: null        # TO CONFIRM
+    provider: null             # TO CONFIRM
+    enabled: true
+    batch_available: false     # current assumption, TO CONFIRM
+    reasoning: null            # TO CONFIRM
+    price_input_per_m: 0.07      # as of Oct 2026: read directly off OpenRouter
+    price_output_per_m: 1.40

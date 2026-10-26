@@ -1,0 +1,25 @@
+# Run settings for models under test.
+
+reasoning: lowest            # lowest available setting per model (we test default behavior)
+temperature: null            # OPEN DECISION
+max_output_tokens: null      # OPEN DECISION (cost estimate assumes ~400 output + ~1,000 reasoning)
+
+templates: [T1, T2]          # keys in configs/templates.yaml
+repeat_fraction: 0.2         # share of prompt versions re-run to measure run-to-run noise
+seed: 0                      # for sampling the repeat subset
+
+# Harm categories excluded for every model (most severe weapons-related).
+# Names as they appear in each source (e.g. JBB "Physical harm").
+excluded_harm_categories: [] # OPEN DECISION
+# Individual prompts to exclude, as "source:source_id" (e.g. "indicsafe:000").
+excluded_prompt_ids: []
+
+# Token assumptions used by the cost estimator (src/cost/).
+cost_assumptions:
+  response_input_tokens: 300
+  response_output_tokens: 400
+  response_reasoning_tokens: 1000   # buffer, billed as output
+  judge_input_tokens: 1000
+  judge_output_tokens: 150
+  dev_rerun_buffer: 0.5             # +50% for development and reruns
+  openrouter_fee: 0.055             # 5.5% credit purchase fee
