@@ -77,11 +77,11 @@ All are called through **OpenRouter**, using its Batch API where a model has a b
 |---|---|---|
 | `opus-5.5` | Claude Opus 5.5 | US closed frontier |
 | `gpt-6.1-sol` | GPT-6.1-sol | US closed frontier |
-| `gemini-4-argon` | Gemini 4 Argon | US closed frontier (optional; off by default) |
+| `gemini-4-argon` | Gemini 4 Argon | US closed frontier (reserve, off by default) |
 | `muse-spark-open` | Muse Spark Open (Meta) | US open-weight |
 | `kimi-k3` | Kimi K3 (Moonshot) | Chinese open-weight |
 | `qwen3.8-max` | Qwen3.8-Max (Alibaba) | Chinese |
-| `glm-5.3` | GLM-5.3 (Z.ai) | Chinese |
+| `glm-5.3` | GLM-5.3 (Z.ai) | Chinese (reserve, off by default) |
 
 **Run settings** ([configs/run.yaml](../configs/run.yaml)):
 - Reasoning at the lowest available setting per model, since we test default behavior.
