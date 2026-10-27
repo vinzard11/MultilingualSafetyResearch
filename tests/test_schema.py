@@ -12,7 +12,7 @@ def row(**changes):
     base = dict(
         version_id="jbb-h000-te-human", source="jbb", source_id="h000", harmful=True,
         harm_category="Privacy", language="te", form="human", text="అనువాదం",
-        translator="Bilingual researcher/translator", status="final", notes="",
+        translator="translator", status="final", notes="",
     )
     base.update(changes)
     return asdict(PromptVersion(**base))

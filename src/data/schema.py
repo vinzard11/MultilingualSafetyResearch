@@ -34,7 +34,7 @@ class PromptVersion:
     language: str
     form: str
     text: str | None
-    translator: str | None   # "source", "google", "llm:<model>", or a person's name
+    translator: str | None   # "source", "google", "llm:<model>", or a role label (e.g. translator)
     status: str              # one of STATUSES
     notes: str = ""
 

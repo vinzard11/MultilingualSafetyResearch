@@ -86,8 +86,6 @@ Source datasets are downloaded at runtime from pinned revisions and are not comm
 
 Raw model responses and judge outputs stay private. Only aggregates and safe examples will be published. See [docs/RESEARCH_CONDUCT.md](docs/RESEARCH_CONDUCT.md).
 
-## Team
+## Acknowledgements
 
-- **Vinith Ayapilla**, researcher; Telugu translation review; Telugu and Hindi label checks
-- **Bilingual researcher and translator** (Tamil, Telugu, Hindi), human translations, Tamil label checks, Telugu and Hindi overlaps
-- A native Hindi reviewer for the Hindi translations, and a second Tamil checker for the Tamil overlap
+Human translations and label checks were done by a small group of native-speaker translators and checkers.

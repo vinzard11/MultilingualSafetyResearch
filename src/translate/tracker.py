@@ -4,7 +4,7 @@ One CSV per (language, form) for the forms done or checked by people:
 `human`, `romanized` and `codemixed`.
 
     python -m src.translate.tracker export --language te --form human
-    python -m src.translate.tracker import outputs/trackers/te_human.csv --by "Bilingual researcher/translator"
+    python -m src.translate.tracker import outputs/trackers/te_human.csv --by "translator"
 
 Sheet columns:
     version_id, source, source_id, harmful, harm_category   (don't edit)

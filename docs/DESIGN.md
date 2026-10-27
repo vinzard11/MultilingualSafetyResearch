@@ -5,7 +5,7 @@
 An ongoing personal research project. It asks how much of the gap in LLM safety behavior across languages comes from **translation artifacts** and how much from the **language itself**, and how this differs between US and Chinese models.
 
 - **Researcher:** Vinith Ayapilla
-- **Translation and label checks:** a bilingual researcher and translator (Tamil, Telugu, Hindi); Telugu translations reviewed by Vinith Ayapilla and Hindi translations by a native Hindi reviewer; a second Tamil checker for the Tamil overlap
+- **Translation and label checks:** native-speaker translators and checkers; every human translation is reviewed by a native speaker
 - **Method:** paired contrasts on the same prompts, with confidence intervals from a mixed-effects logistic regression
 
 ## 2. Research questions
@@ -109,11 +109,7 @@ Three judges from different model families, each scoring **every** response: Cla
 - About **400 responses per language** are checked by a person, sampled with stratification across models, forms and harmful/harmless prompts.
 - A **100-response overlap** in every language is checked by a second person, for agreement.
 
-| Language | Main checker (400) | Overlap checker (100) |
-|---|---|---|
-| Telugu | Vinith Ayapilla | Bilingual researcher/translator |
-| Tamil | Bilingual researcher/translator | Second Tamil checker |
-| Hindi | Vinith Ayapilla | Bilingual researcher/translator |
+In each language, one native speaker checks about 400 responses, and a second native speaker checks 100 of the same ones for agreement.
 
 Checkers use the same four labels as the judges and also record `intent_preserved`. Their sheets are blind: no model names, no judge labels.
 

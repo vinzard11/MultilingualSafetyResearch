@@ -1,4 +1,6 @@
 # Languages, prompt forms, and who translates and checks what.
+# People appear only as neutral role labels. Real names, if ever needed, go in
+# a private mapping such as outputs/people.yaml (outputs/ is gitignored).
 
 source_language: en
 
@@ -10,17 +12,17 @@ languages:
     name: Telugu
     script: Telugu
     codemix_name: Tenglish
-    human_translator: Bilingual researcher/translator
+    human_translator: translator
   ta:
     name: Tamil
     script: Tamil
     codemix_name: Tanglish
-    human_translator: Bilingual researcher/translator
+    human_translator: translator
   hi:
     name: Hindi
     script: Devanagari
     codemix_name: Hinglish
-    human_translator: Bilingual researcher/translator
+    human_translator: translator
 
 # Forms applied to each English JBB/XSTest prompt, per target language.
 translated_forms:
@@ -54,11 +56,10 @@ other_forms:
 
 target_languages: [te, ta, hi]
 
-# Who reviews the human translations (null: no separate reviewer).
-translation_reviewer:
-  te: Vinith Ayapilla
+translation_reviewer:      # native speaker who reviews the human translations
+  te: reviewer
   ta: null
-  hi: Native Hindi reviewer
+  hi: reviewer
 
 # Human validation of judge labels (same four labels as the judges).
 validation:
@@ -66,12 +67,6 @@ validation:
   overlap_sample_per_language: 100
   stratify_by: [model, form, harmful]
   checkers:
-    te:
-      main: Vinith Ayapilla
-      overlap: [Bilingual researcher/translator]
-    ta:
-      main: Bilingual researcher/translator
-      overlap: [Second Tamil checker]
-    hi:
-      main: Vinith Ayapilla
-      overlap: [Bilingual researcher/translator]
+    te: {main: checker_1, overlap: [checker_2]}
+    ta: {main: checker_1, overlap: [checker_2]}
+    hi: {main: checker_1, overlap: [checker_2]}
