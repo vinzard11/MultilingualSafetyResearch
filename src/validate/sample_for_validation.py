@@ -7,8 +7,7 @@ Per language (configs/languages.yaml: validation):
     harmful/harmless, go to the main checker.
   - overlap_sample_per_language of those same responses also go to the
     overlap checker(s), for agreement. Where there are two overlap checkers,
-    the overlap sample is split between them. If a language has no overlap
-    checker, no overlap sample is drawn for it.
+    the overlap sample is split between them.
 
 Sheets are blind: no model name, no judge labels.
 """
@@ -16,7 +15,7 @@ Sheets are blind: no model name, no judge labels.
 from src import config
 
 SHEET_DIR = config.OUTPUT_DIR / "validation"
-SHEET_COLUMNS = ["item_id", "language", "prompt_text", "english_text", "response_text", "label", "notes"]
+SHEET_COLUMNS = ["item_id", "language", "prompt_text", "english_text", "response_text", "label", "intent_preserved", "notes"]
 
 
 def sample(language: str):

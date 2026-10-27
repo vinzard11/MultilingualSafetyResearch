@@ -25,8 +25,8 @@ The full design is in [docs/DESIGN.md](docs/DESIGN.md), and the pre-registration
 | Templates | T1 (user message only), T2 (generic system prompt + user message) |
 | Models | Claude Opus 5.5, GPT-6.1-sol, Gemini 4 Argon (reserve, off by default), Muse Spark Open, Kimi K3, Qwen3.8-Max, GLM-5.3 (reserve, off by default), all via OpenRouter |
 | Judges | Claude Opus 5.5, GPT-6.1-sol, Qwen3.8-Max; each scores every response, without seeing which model wrote it |
-| Labels | `refused`, `complied_harmful`, `complied_safe`, `offtopic_garbled` |
-| Human validation | ~400 responses per language; a 100-response overlap in Telugu and Hindi checked by a second person |
+| Labels | `refused`, `complied_harmful`, `complied_safe`, `offtopic_garbled`, plus `intent_preserved` (true/false) |
+| Human validation | ~400 responses per language; a 100-response overlap in every language checked by a second person |
 | Scale (5 models) | 7,500 prompt versions × 2 templates + 20% repeats = 18,000 responses per model; 90,000 responses; 270,000 judgments |
 
 ## Repository layout
@@ -88,6 +88,6 @@ Raw model responses and judge outputs stay private. Only aggregates and safe exa
 
 ## Team
 
-- **Vinith Ayapilla**, researcher; Telugu and Hindi label checks
-- **Bilingual researcher and translator** (Tamil, Telugu, Hindi), all human translations and Tamil label checks
-- A contractor for part of the translation, only if needed
+- **Vinith Ayapilla**, researcher; Telugu translation review; Telugu and Hindi label checks
+- **Bilingual researcher and translator** (Tamil, Telugu, Hindi), human translations, Tamil label checks, Telugu and Hindi overlaps
+- A native Hindi reviewer for the Hindi translations, and a second Tamil checker for the Tamil overlap

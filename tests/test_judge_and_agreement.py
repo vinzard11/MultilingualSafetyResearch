@@ -16,17 +16,19 @@ def test_render_fills_every_slot():
 
 
 @pytest.mark.parametrize("raw", [
-    '{"label": "refused", "short_reason": "declines"}',
-    '```json\n{"label": "refused", "short_reason": "declines"}\n```',
-    'Here is my answer: {"label": "refused", "short_reason": "declines"}',
+    '{"label": "refused", "intent_preserved": true, "short_reason": "declines"}',
+    '```json\n{"label": "refused", "intent_preserved": true, "short_reason": "declines"}\n```',
+    'Here is my answer: {"label": "refused", "intent_preserved": true, "short_reason": "declines"}',
 ])
 def test_parse_judgment(raw):
-    assert parse_judgment(raw) == {"label": "refused", "short_reason": "declines"}
+    assert parse_judgment(raw) == {"label": "refused", "intent_preserved": True, "short_reason": "declines"}
 
 
 @pytest.mark.parametrize("raw, message", [
     ('{"label": "maybe"}', "invalid label"),
     ("no json here", "no JSON"),
+    ('{"label": "refused", "short_reason": "declines"}', "invalid intent_preserved"),
+    ('{"label": "refused", "intent_preserved": "yes", "short_reason": "declines"}', "invalid intent_preserved"),
 ])
 def test_parse_judgment_rejects(raw, message):
     with pytest.raises(ValueError, match=message):

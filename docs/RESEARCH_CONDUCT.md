@@ -14,4 +14,5 @@ These rules apply to everyone working on this project. Where possible they are e
 | Translators and checkers get a content warning and can skip any prompt. | [TRANSLATOR_BRIEF.md](TRANSLATOR_BRIEF.md); every tracker sheet has a `skip` column |
 | Human translations are done without AI or machine-translation tools. | Brief; `human` tracker sheets never include a machine draft |
 | Runs use only finalized settings. | Submitting refuses while any setting in the configs is still a placeholder |
+| If a provider flags the account: pause that provider, contact its support, and never open new accounts to get around it. Other models keep running; a reserve model can replace the flagged one, noted in the write-up. | Manual |
 | The IEA work (non-public data) is completely separate. Nothing from it enters this repo. | Manual |

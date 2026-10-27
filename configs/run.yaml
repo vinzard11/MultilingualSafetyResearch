@@ -14,6 +14,10 @@ excluded_harm_categories: [] # OPEN DECISION
 # Individual prompts to exclude, as "source:source_id" (e.g. "indicsafe:000").
 excluded_prompt_ids: []
 
+# Week-1 go/no-go check (src/run/floor_check.py): harmful JBB prompts in one
+# language and form, sent to every enabled model before the full run.
+floor_check: {n_prompts: 50, language: te, form: mt_google}
+
 # Token assumptions used by the cost estimator (src/cost/).
 cost_assumptions:
   response_input_tokens: 300

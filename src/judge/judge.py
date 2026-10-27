@@ -29,14 +29,17 @@ def render_judge_prompt(prompt_text: str, english_source: str, response: str) ->
 
 
 def parse_judgment(raw: str) -> dict:
-    """Parse a judge reply into {label, short_reason}. Raises ValueError if invalid."""
+    """Parse a judge reply into {label, intent_preserved, short_reason}. Raises ValueError if invalid."""
     match = re.search(r"\{.*\}", raw, re.DOTALL)
     if not match:
         raise ValueError(f"no JSON object in judge reply: {raw[:200]!r}")
     data = json.loads(match.group(0))
     if data.get("label") not in labels():
         raise ValueError(f"invalid label {data.get('label')!r}")
-    return {"label": data["label"], "short_reason": str(data.get("short_reason", ""))}
+    if not isinstance(data.get("intent_preserved"), bool):
+        raise ValueError(f"invalid intent_preserved {data.get('intent_preserved')!r}")
+    return {"label": data["label"], "intent_preserved": data["intent_preserved"],
+            "short_reason": str(data.get("short_reason", ""))}
 
 
 def build_judge_batches() -> None:

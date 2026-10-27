@@ -36,11 +36,11 @@ translated_forms:
     produced_by: tracker import
   romanized:
     description: Human translation written in Latin script
-    produced_by: generated from `human`, then checked by a native speaker
+    produced_by: "drafted with tools from human, then edited by the translator"
     tool: null                  # OPEN DECISION
   codemixed:
     description: Words switched between the language and English within a sentence
-    produced_by: drafted from `human`, then edited and checked by a native speaker
+    produced_by: "drafted with tools from human, then edited by the translator"
     drafting_method: null       # OPEN DECISION
 
 # Forms outside the 5 translated forms.
@@ -54,10 +54,16 @@ other_forms:
 
 target_languages: [te, ta, hi]
 
+# Who reviews the human translations (null: no separate reviewer).
+translation_reviewer:
+  te: Vinith Ayapilla
+  ta: null
+  hi: Native Hindi reviewer
+
 # Human validation of judge labels (same four labels as the judges).
 validation:
   main_sample_per_language: 400
-  overlap_sample_per_language: 100   # only for languages with a non-empty overlap list
+  overlap_sample_per_language: 100
   stratify_by: [model, form, harmful]
   checkers:
     te:
@@ -65,7 +71,7 @@ validation:
       overlap: [Bilingual researcher/translator]
     ta:
       main: Bilingual researcher/translator
-      overlap: []                 # contractor if hired
+      overlap: [Second Tamil checker]
     hi:
       main: Vinith Ayapilla
       overlap: [Bilingual researcher/translator]

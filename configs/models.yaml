@@ -8,7 +8,7 @@
 #   name                display name
 #   lab                 developer (used to measure judge self-preference)
 #   group               us_closed_frontier | us_open_weight | cn_open_weight | cn
-#   origin              US | CN (used to group models by origin in the analysis)
+#   origin              US | CN (used to describe results by origin; not estimated as a factor)
 #   openrouter_id       OpenRouter model ID                     (TO CONFIRM)
 #   provider            pinned OpenRouter provider               (TO CONFIRM)
 #   enabled             include in runs and cost estimate
