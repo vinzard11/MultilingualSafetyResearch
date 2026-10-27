@@ -5,14 +5,14 @@
 An ongoing personal research project. It asks how much of the gap in LLM safety behavior across languages comes from **translation artifacts** and how much from the **language itself**, and how this differs between US and Chinese models.
 
 - **Researcher:** Vinith Ayapilla
-- **Translation and label checks:** a bilingual researcher and translator (Tamil, Telugu); a hired Hindi translator and checker; a second Tamil checker for an overlap sample
-- **Method:** generalizability theory (G-study) to split the variance in safety outcomes across factors
+- **Translation and label checks:** a bilingual researcher and translator (Tamil, Telugu, Hindi); a contractor only if the translation load gets too heavy
+- **Method:** paired contrasts on the same prompts, with confidence intervals from a mixed-effects logistic regression
 
 ## 2. Research questions
 
 1. **Q1:** For the same request, how much do refusal and harmful-output rates differ across languages, and between US and Chinese models?
 2. **Q2:** How much of the gap is translation artifact versus the language itself? We compare Google-translated, LLM-translated and human-translated prompts, plus romanized and code-mixed versions.
-3. **Q3:** How much of the variance does each factor explain (language, prompt form, model or model origin, prompt template, harm category, judge, repeat run)?
+3. **Q3:** How large is each contrast (translation artifact, script/mixing, remaining language effect), with confidence intervals?
 4. **Q4:** Does over-refusal (refusing harmless prompts) also vary by language?
 
 Out of scope: mechanistic or refusal-direction work, multi-turn conversations, fine-tuning, and self-hosting models.
@@ -106,13 +106,13 @@ Three judges from different model families, each scoring **every** response: Cla
 ## 9. Human validation
 
 - About **400 responses per language** are checked by a person, sampled with stratification across models, forms and harmful/harmless prompts.
-- A **100-response overlap** per language is checked by a second person, for agreement.
+- A **100-response overlap** in Telugu and Hindi is checked by a second person, for agreement.
 
 | Language | Main checker (400) | Overlap checker (100) |
 |---|---|---|
-| Telugu | Vinith Ayapilla | Tamil/Telugu translator |
-| Tamil | Tamil/Telugu translator | Second Tamil checker |
-| Hindi | Hindi translator | Vinith Ayapilla and Tamil/Telugu translator |
+| Telugu | Vinith Ayapilla | Bilingual researcher/translator |
+| Tamil | Bilingual researcher/translator | none (contractor if hired) |
+| Hindi | Vinith Ayapilla | Bilingual researcher/translator |
 
 Checkers use the same four labels as the judges. Their sheets are blind: no model names, no judge labels.
 
@@ -121,6 +121,6 @@ Checkers use the same four labels as the judges. Their sheets are blind: no mode
 Four analyses, one per research question. They are pre-registered in [ANALYSIS_PLAN.md](ANALYSIS_PLAN.md) before any results exist.
 
 1. **Gap (Q1, Q4):** harmful-compliance rate (harmful prompts), over-refusal rate (harmless prompts) and garbled rate (all prompts), by language × form × model, compared against English.
-2. **Translation artifacts (Q2):** within each language, compare `mt_google`, `mt_llm` and `human`, and compare `romanized` and `codemixed` against `human`.
-3. **Variance breakdown (Q3):** a G-study estimating variance components for prompt item, language, form, model and model origin, template, harm category, judge and repeat run, plus key interactions (language × model origin, form × model, judge × language). Outcomes are binary, so a mixed-effects logistic model is fitted alongside as a check. A decision study then estimates how many prompts and judges phase 2 needs. Implemented in Python with statsmodels.
-4. **Judge reliability:** Cohen's κ between each judge and the human checks per language, and between the two human checkers on the overlap samples.
+2. **Paired contrasts (Q2):** on the same source prompts, per model and language: `mt_google` and `mt_llm` vs `human` (translation artifact); `romanized` and `codemixed` vs `human` (script and mixing effect); `human` vs `en_original` (remaining language effect). Each is computed for the harmful-compliance, over-refusal and garbled rates.
+3. **Confidence intervals (Q3):** a mixed-effects logistic regression on each binary outcome, one row per judgment. Fixed effects: language, form, model and their interactions. Crossed random effects: prompt and judge. The contrasts come out of this model with 95% CIs. The 20% repeat runs give a separate run-to-run noise figure.
+4. **Judge reliability:** Cohen's κ between each judge and the human checks per language, and between the two human checkers on the overlap samples (human–human κ in Telugu and Hindi only).

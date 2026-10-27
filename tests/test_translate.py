@@ -28,12 +28,12 @@ def test_human_sheet_round_trip(offline_tracker):
     sheet.loc[0, "final_text"] = "అనువాదం"
     sheet.loc[1, "skip"] = "y"
     sheet.to_csv(path, index=False, encoding="utf-8-sig")
-    assert tracker.import_tracker(path, "te", "human", "Tamil/Telugu translator") == 2
+    assert tracker.import_tracker(path, "te", "human", "Bilingual researcher/translator") == 2
 
     v = load_versions().set_index("version_id")
     assert v.at["jbb-h000-te-human", "text"] == "అనువాదం"
     assert v.at["jbb-h000-te-human", "status"] == "final"
-    assert v.at["jbb-h000-te-human", "translator"] == "Tamil/Telugu translator"
+    assert v.at["jbb-h000-te-human", "translator"] == "Bilingual researcher/translator"
     assert v.at["jbb-b000-te-human", "status"] == "skipped"
 
     again = read_sheet(tracker.export_tracker("te", "human"))
@@ -45,7 +45,7 @@ def test_romanized_sheet_only_has_finished_human_rows(offline_tracker):
     sheet = read_sheet(path)
     sheet.loc[0, "final_text"] = "అనువాదం"
     sheet.to_csv(path, index=False, encoding="utf-8-sig")
-    tracker.import_tracker(path, "te", "human", "Tamil/Telugu translator")
+    tracker.import_tracker(path, "te", "human", "Bilingual researcher/translator")
 
     rom = read_sheet(tracker.export_tracker("te", "romanized"))
     assert len(rom) == 1

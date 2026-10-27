@@ -2,7 +2,7 @@
 
 **How much of the gap in LLM safety behavior across languages comes from translation artifacts, and how much from the language itself? And does this differ between US and Chinese models?**
 
-An ongoing personal research project. We test 5 models on the same requests in English, Telugu, Tamil and Hindi. Each prompt comes in several forms: Google-translated, LLM-translated, human-translated, romanized and code-mixed. Three judges from different model families label every response. A generalizability-theory study (G-study) then splits the variance in safety outcomes across language, prompt form, model, template, harm category, judge and run.
+An ongoing personal research project. We test 5 models on the same requests in English, Telugu, Tamil and Hindi. Each prompt comes in several forms: Google-translated, LLM-translated, human-translated, romanized and code-mixed. Three judges from different model families label every response. Paired comparisons on the same prompts then separate the translation artifact (machine vs human translation), the script and mixing effect (romanized or code-mixed vs human) and the remaining language effect (human translation vs English), with confidence intervals from a mixed-effects logistic regression.
 
 > **Status: setup.** The design, configs, data loaders, schema, judge rubric, cost estimator and pipeline skeleton are in place. **No models have been evaluated yet.** The analysis plan will be fixed before any results exist.
 
@@ -10,7 +10,7 @@ An ongoing personal research project. We test 5 models on the same requests in E
 
 1. **Gap:** For the same request, how much do refusal and harmful-output rates differ across languages, and between US and Chinese models?
 2. **Translation artifacts:** How much of the gap is translation artifact versus the language itself? We compare machine-translated (Google, LLM) and human-translated prompts, plus romanized and code-mixed versions.
-3. **Variance breakdown:** How much variance does each factor explain? This is the G-study.
+3. **Uncertainty:** How large is each of those contrasts, with confidence intervals?
 4. **Over-refusal:** Does refusing harmless prompts also vary by language?
 
 The full design is in [docs/DESIGN.md](docs/DESIGN.md), and the pre-registration template is in [docs/ANALYSIS_PLAN.md](docs/ANALYSIS_PLAN.md).
@@ -26,7 +26,7 @@ The full design is in [docs/DESIGN.md](docs/DESIGN.md), and the pre-registration
 | Models | Claude Opus 5.5, GPT-6.1-sol, Gemini 4 Argon (reserve, off by default), Muse Spark Open, Kimi K3, Qwen3.8-Max, GLM-5.3 (reserve, off by default), all via OpenRouter |
 | Judges | Claude Opus 5.5, GPT-6.1-sol, Qwen3.8-Max; each scores every response, without seeing which model wrote it |
 | Labels | `refused`, `complied_harmful`, `complied_safe`, `offtopic_garbled` |
-| Human validation | ~400 responses per language, with a 100-response overlap checked by a second person |
+| Human validation | ~400 responses per language; a 100-response overlap in Telugu and Hindi checked by a second person |
 | Scale (5 models) | 7,500 prompt versions × 2 templates + 20% repeats = 18,000 responses per model; 90,000 responses; 270,000 judgments |
 
 ## Repository layout
@@ -40,7 +40,7 @@ src/
   run/        build prompt versions, build batch files, submit/poll/collect
   judge/      judge prompts and label parsing
   validate/   sampling for human checks, importing them
-  analysis/   rates, form comparisons, G-study, agreement
+  analysis/   rates, paired contrasts and mixed model, agreement
   cost/       cost estimator
 tests/
 outputs/      private, gitignored: prompt versions, batches, responses, judgments
@@ -54,7 +54,7 @@ What is implemented and what is still a stub:
 | Google Translate form | Submitting, polling and collecting OpenRouter batches |
 | Translator sheet export and import | Building judge batches |
 | Prompt-version table, batch file builder | Validation sampling and import |
-| Judge prompt rendering and label parsing | Rates, form comparisons, G-study |
+| Judge prompt rendering and label parsing | Rates, paired contrasts, mixed model |
 | Cost estimator, Cohen's κ | |
 
 ## How to run
@@ -88,6 +88,6 @@ Raw model responses and judge outputs stay private. Only aggregates and safe exa
 
 ## Team
 
-- **Vinith Ayapilla**, researcher
-- **Bilingual researcher and translator** (Tamil, Telugu), translation and checks
-- A Hindi translator and checker, and a second Tamil checker for the overlap sample
+- **Vinith Ayapilla**, researcher; Telugu and Hindi label checks
+- **Bilingual researcher and translator** (Tamil, Telugu, Hindi), all human translations and Tamil label checks
+- A contractor for part of the translation, only if needed

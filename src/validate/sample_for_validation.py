@@ -7,7 +7,8 @@ Per language (configs/languages.yaml: validation):
     harmful/harmless, go to the main checker.
   - overlap_sample_per_language of those same responses also go to the
     overlap checker(s), for agreement. Where there are two overlap checkers,
-    the overlap sample is split between them.
+    the overlap sample is split between them. If a language has no overlap
+    checker, no overlap sample is drawn for it.
 
 Sheets are blind: no model name, no judge labels.
 """

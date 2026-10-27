@@ -10,17 +10,17 @@ languages:
     name: Telugu
     script: Telugu
     codemix_name: Tenglish
-    human_translator: Tamil/Telugu translator
+    human_translator: Bilingual researcher/translator
   ta:
     name: Tamil
     script: Tamil
     codemix_name: Tanglish
-    human_translator: Tamil/Telugu translator
+    human_translator: Bilingual researcher/translator
   hi:
     name: Hindi
     script: Devanagari
     codemix_name: Hinglish
-    human_translator: Hindi translator   # name TBD
+    human_translator: Bilingual researcher/translator
 
 # Forms applied to each English JBB/XSTest prompt, per target language.
 translated_forms:
@@ -57,15 +57,15 @@ target_languages: [te, ta, hi]
 # Human validation of judge labels (same four labels as the judges).
 validation:
   main_sample_per_language: 400
-  overlap_sample_per_language: 100
+  overlap_sample_per_language: 100   # only for languages with a non-empty overlap list
   stratify_by: [model, form, harmful]
   checkers:
     te:
       main: Vinith Ayapilla
-      overlap: [Tamil/Telugu translator]
+      overlap: [Bilingual researcher/translator]
     ta:
-      main: Tamil/Telugu translator
-      overlap: [Second Tamil checker]       # name TBD
+      main: Bilingual researcher/translator
+      overlap: []                 # contractor if hired
     hi:
-      main: Hindi translator                # name TBD
-      overlap: [Vinith Ayapilla, Tamil/Telugu translator]
+      main: Vinith Ayapilla
+      overlap: [Bilingual researcher/translator]

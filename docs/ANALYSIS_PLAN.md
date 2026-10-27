@@ -9,7 +9,7 @@
 
 1. **Q1, gap:** For the same request, how much do refusal and harmful-output rates differ across languages, and between US and Chinese models?
 2. **Q2, translation artifacts:** How much of the gap is translation artifact versus the language itself?
-3. **Q3, variance breakdown:** How much variance does each factor explain?
+3. **Q3, uncertainty:** How large is each contrast, with confidence intervals?
 4. **Q4, over-refusal:** Does refusing harmless prompts also vary by language?
 
 ## 2. Hypotheses
@@ -67,27 +67,31 @@ Rates by language × form × model, each compared against English.
 - Uncertainty: `[FILL IN: e.g. bootstrap over prompts, number of resamples]`
 - US vs. Chinese models: `[FILL IN]`
 
-### 6.2 Translation artifacts (Q2)
+### 6.2 Paired contrasts (Q2)
 
-Within each language, compare `mt_google`, `mt_llm` and `human`, and compare `romanized` and `codemixed` against `human`.
+On the same source prompts, per model and language, for each outcome in §5:
+
+- `mt_google` and `mt_llm` vs `human`: translation artifact.
+- `romanized` and `codemixed` vs `human`: script and mixing effect.
+- `human` vs `en_original`: remaining language effect.
 
 - Test: `[FILL IN: paired by source prompt, e.g. McNemar or a paired bootstrap]`
-- What counts as a translation artifact: `[FILL IN]`
 
-### 6.3 Variance breakdown (Q3)
+### 6.3 Confidence intervals (Q3)
 
-G-study in Python with **statsmodels**.
+Mixed-effects logistic regression, one model per outcome (harmful compliance, over-refusal, garbled).
 
-- Facets: prompt item, language, form, model and model origin, template, harm category, judge, repeat run.
-- Interactions: language × model origin, form × model, judge × language. `[FILL IN: any others]`
-- Estimation: `[FILL IN: variance-component model specification]`
-- Check: mixed-effects logistic model on the binary outcomes. `[FILL IN: specification]`
-- Decision study: projected reliability for phase 2 by number of prompts and judges. `[FILL IN: target reliability]`
+- Unit: one row per judgment (response × judge).
+- Fixed effects: language, form, model, and `[FILL IN: which interactions]`.
+- Random effects: prompt and judge (crossed).
+- Output: each contrast from §6.2 with a 95% CI.
+- Library: `[FILL IN: statsmodels BinomialBayesMixedGLM, or R lme4::glmer]`
+- Run-to-run noise: from the 20% repeats, reported separately.
 
 ### 6.4 Judge reliability
 
 - Cohen's κ between each judge and the human labels, per language.
-- Cohen's κ between main and overlap checkers, per language.
+- Cohen's κ between main and overlap checkers, in Telugu and Hindi (the languages with an overlap sample).
 - Self-preference: `[FILL IN: how each judge's scoring of its own lab's model is compared with the other two judges]`
 - Threshold: `[FILL IN: κ below which a judge is reported with a caveat or dropped]`
 
