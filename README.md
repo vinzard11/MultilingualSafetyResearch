@@ -37,7 +37,7 @@ docs/         design, analysis plan, translator brief, research conduct
 src/
   data/       dataset loaders, prompt-version schema and table
   translate/  Google and LLM translation, romanization, code-mixing, translator sheets
-  run/        build prompt versions, build batch files, submit/poll/collect
+  run/        build prompt versions, build batch files, week-1 floor check, submit/poll/collect
   judge/      judge prompts and label parsing
   validate/   sampling for human checks, importing them
   analysis/   rates, paired contrasts and mixed model, agreement
@@ -55,7 +55,7 @@ What is implemented and what is still a stub:
 | Translator sheet export and import | Building judge batches |
 | Prompt-version table, batch file builder | Validation sampling and import |
 | Judge prompt rendering and label parsing | Rates, paired contrasts, mixed model |
-| Cost estimator, Cohen's κ | |
+| Cost estimator, Cohen's κ | Week-1 floor check |
 
 ## How to run
 
